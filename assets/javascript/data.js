@@ -12,7 +12,23 @@ var config = {
   var database = firebase.database();
 
   $("#submit").on("click", function() {
+          //VALUES FOR EACH VARIABLE IN HTML
+          var name = $('#nameInput').val().trim();
+          var dest = $('#destInput').val().trim();
+          var time = $('#timeInput').val().trim();
+          var freq = $('#freqInput').val().trim();
       
+      // PUSH NEW ENTRY TO FIREBASE
+          database.ref().push({
+              name: name,
+              dest: dest,
+              time: time,
+              freq: freq,
+              timeAdded: firebase.database.ServerValue.TIMESTAMP
+          });
+          // NO REFRESH
+          $("input").val('');
+          return false;
+      });
       
   }); 
-});
